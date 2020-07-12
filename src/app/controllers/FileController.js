@@ -24,6 +24,11 @@ class FileController {
         path,
       });
 
+      req.io.emit('photo', {
+        family: { code: family.code, subject: family.welcomeSubject },
+        file: { url: file.url },
+      });
+
       return res.json(file);
     }
 

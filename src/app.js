@@ -10,9 +10,14 @@ import sentryConfig from './config/sentry';
 
 import './database';
 
+const http = require('http');
+const socketIO = require('socket.io');
+
 class App {
   constructor() {
     this.server = express();
+    this.app = http.Server(this.server);
+    this.io = socketIO(this.app);
 
     if (process.NODE_ENV === 'production') {
       Sentry.init(sentryConfig);
@@ -27,6 +32,11 @@ class App {
     if (process.NODE_ENV === 'production') {
       this.server.use(Sentry.Handlers.requestHandler());
     }
+    this.server.use((req, res, next) => {
+      req.io = this.io;
+
+      next();
+    });
     this.server.use(cors());
     this.server.use(express.json());
     this.server.use(
@@ -63,4 +73,4 @@ class App {
   }
 }
 
-export default new App().server;
+export default new App().app;
