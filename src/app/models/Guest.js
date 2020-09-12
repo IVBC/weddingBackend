@@ -6,6 +6,8 @@ class Guest extends Model {
       {
         name: Sequelize.STRING,
         isConfirmed: Sequelize.BOOLEAN,
+        isPresent: Sequelize.BOOLEAN,
+        isChild: Sequelize.BOOLEAN,
       },
       {
         sequelize,

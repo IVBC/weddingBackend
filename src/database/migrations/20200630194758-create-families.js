@@ -12,6 +12,11 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      is_receptionist: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       welcome_subject: {
         type: Sequelize.STRING,
         allowNull: false,

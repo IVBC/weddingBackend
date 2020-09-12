@@ -7,6 +7,7 @@ class Family extends Model {
         code: Sequelize.STRING,
         welcomeSubject: Sequelize.STRING,
         numberTable: Sequelize.INTEGER,
+        isReceptionist: Sequelize.BOOLEAN,
       },
       {
         sequelize,

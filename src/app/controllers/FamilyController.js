@@ -2,6 +2,7 @@
 import * as Yup from 'yup';
 
 import Family from '../models/Family';
+import Guest from '../models/Guest';
 
 class FamilyController {
   async index(req, res) {
@@ -11,7 +12,13 @@ class FamilyController {
       order: [['id', 'DESC']],
       limit: quantity,
       offset: (page - 1) * quantity,
-      attributes: ['id', 'code', 'welcomeSubject', 'numberTable'],
+      attributes: [
+        'id',
+        'code',
+        'welcomeSubject',
+        'numberTable',
+        'isReceptionist',
+      ],
     });
 
     return res.json({
@@ -28,13 +35,26 @@ class FamilyController {
       where: {
         code,
       },
-      attributes: ['id', 'code', 'welcomeSubject', 'numberTable'],
+      order: [[{ model: Guest, as: 'guests' }, 'name', 'ASC']],
+      attributes: [
+        'id',
+        'code',
+        'welcomeSubject',
+        'numberTable',
+        'isReceptionist',
+      ],
       include: [
         {
           association: 'photos',
           attributes: {
             include: [['id', 'id_file']],
             exclude: ['updatedAt', 'createdAt', 'family_id', 'id'],
+          },
+        },
+        {
+          association: 'guests',
+          attributes: {
+            exclude: ['updatedAt', 'createdAt', 'family_id'],
           },
         },
       ],
@@ -52,6 +72,7 @@ class FamilyController {
       code: Yup.string().required(),
       welcomeSubject: Yup.string().required(),
       numberTable: Yup.number().required(),
+      isReceptionist: Yup.boolean(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -65,15 +86,20 @@ class FamilyController {
       return res.status(400).json({ error: 'Code Family already exists' });
     }
 
-    const { id, code, welcomeSubject, numberTable } = await Family.create(
-      req.body
-    );
+    const {
+      id,
+      code,
+      welcomeSubject,
+      numberTable,
+      isReceptionist,
+    } = await Family.create(req.body);
 
     return res.json({
       id,
       code,
       welcomeSubject,
       numberTable,
+      isReceptionist,
     });
   }
 
@@ -101,6 +127,7 @@ class FamilyController {
       code: _code,
       welcomeSubject,
       numberTable,
+      isReceptionist,
     } = await family.update(req.body);
 
     return res.json({
@@ -108,6 +135,7 @@ class FamilyController {
       code: _code,
       welcomeSubject,
       numberTable,
+      isReceptionist,
     });
   }
 

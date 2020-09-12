@@ -18,7 +18,7 @@ class GuestController {
       limit: quantity,
       offset: (page - 1) * quantity,
 
-      attributes: ['id', 'name', 'isConfirmed'],
+      attributes: ['id', 'name', 'isConfirmed', 'isPresent', 'isChild'],
       include: [
         {
           model: Family,
@@ -65,13 +65,14 @@ class GuestController {
       code: Yup.string().required(),
       name: Yup.string().required(),
       isConfirmed: Yup.boolean().nullable(),
+      isChild: Yup.boolean().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails.' });
     }
 
-    const { code, name, isConfirmed } = req.body;
+    const { code, name, isConfirmed, isChild } = req.body;
 
     const familyExists = await Family.findOne({
       where: { code },
@@ -84,6 +85,7 @@ class GuestController {
     const guest = await Guest.create({
       name,
       isConfirmed,
+      isChild,
       family_id: familyExists.id,
     });
 
@@ -95,6 +97,7 @@ class GuestController {
       family_id: Yup.number(),
       name: Yup.string(),
       isConfirmed: Yup.boolean().nullable(),
+      isChild: Yup.boolean(),
     });
 
     if (!(await schema.isValid(req.body))) {

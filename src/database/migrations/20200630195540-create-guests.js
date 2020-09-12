@@ -22,6 +22,16 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: true,
       },
+      is_present: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+        defaultValue: false,
+      },
+      is_child: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

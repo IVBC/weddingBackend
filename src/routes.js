@@ -7,6 +7,9 @@ import FamilyController from './app/controllers/FamilyController';
 import GuestController from './app/controllers/GuestController';
 
 import FileController from './app/controllers/FileController';
+import StatisticController from './app/controllers/StatisticController';
+import ConfirmationGuestsController from './app/controllers/ConfirmationGuestsController';
+import SetPresentGuestsController from './app/controllers/SetPresentGuestsController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -26,10 +29,20 @@ routes.delete('/families/:code', FamilyController.delete);
  * Guests
  */
 
+routes.put('/guests/confirmation', ConfirmationGuestsController.update);
+routes.put('/guests/present', SetPresentGuestsController.update);
+
 routes.get('/guests', GuestController.index);
 routes.get('/guests/:id', GuestController.show);
 routes.post('/guests', GuestController.store);
 routes.put('/guests/:id', GuestController.update);
 routes.delete('/guests/:id', GuestController.delete);
+
+/**
+ * Receptionnist
+ */
+
+routes.get('/receptionist/statistic', StatisticController.index);
+routes.get('/receptionist/statistic/:numberTable', StatisticController.show);
 
 export default routes;
