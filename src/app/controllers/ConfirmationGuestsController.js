@@ -20,8 +20,6 @@ class ConfirmationGuestsController {
 
     const guests = req.body;
 
-    console.log(guests);
-
     const confirmedGuestsIDs = guests
       .filter(guest => guest.isConfirmed)
       .map(guest => guest.id);

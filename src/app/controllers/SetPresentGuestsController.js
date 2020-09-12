@@ -20,8 +20,6 @@ class SetPresentGuestsController {
 
     const guests = req.body;
 
-    console.log('recebido: ', guests);
-
     const presentGuestsIDs = guests
       .filter(guest => guest.isPresent)
       .map(guest => guest.id);
