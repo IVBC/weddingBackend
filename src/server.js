@@ -1,5 +1,5 @@
 import app from './app';
 
-app.listen(3333, () => {
+app.listen(4444, () => {
   console.log('👰 Started backend wedding...');
 });
