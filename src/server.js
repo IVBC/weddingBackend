@@ -1,5 +1,5 @@
 import app from './app';
 
-app.listen(4444, () => {
+app.listen(process.env.PORT || 3333, () => {
   console.log('👰 Started backend wedding...');
 });

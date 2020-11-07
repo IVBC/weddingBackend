@@ -31,12 +31,15 @@ class App {
   middlewares() {
     if (process.NODE_ENV === 'production') {
       this.server.use(Sentry.Handlers.requestHandler());
+    } else {
+      this.server.use((req, res, next) => setTimeout(next, 5000));
     }
     this.server.use((req, res, next) => {
       req.io = this.io;
 
       next();
     });
+
     this.server.use(cors());
     this.server.use(express.json());
     this.server.use(

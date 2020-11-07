@@ -6,7 +6,7 @@ import Guest from '../models/Guest';
 
 class GuestController {
   async index(req, res) {
-    const { page = 1, q = '', quantity = 10 } = req.query;
+    const { page = 1, q = '', quantity = 1000 } = req.query;
 
     const { rows: guests, count } = await Guest.findAndCountAll({
       where: {
@@ -14,7 +14,7 @@ class GuestController {
           [Op.iLike]: `${q}%`,
         },
       },
-      order: [['id', 'DESC']],
+      order: [['name', 'ASC']],
       limit: quantity,
       offset: (page - 1) * quantity,
 
