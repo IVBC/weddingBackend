@@ -148,7 +148,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          family_id: 6,
+          family_id: 5,
           name: 'Isaias Nilson Batista da Costa',
           is_confirmed: null,
           is_present: null,
@@ -157,7 +157,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          family_id: 6,
+          family_id: 5,
           name: 'Beatriz Rocha da Silva',
           is_confirmed: null,
           is_present: null,
