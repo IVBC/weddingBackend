@@ -221,7 +221,7 @@ module.exports = {
         },
         {
           family_id: 8,
-          name: 'Esposa do Tio Edilson',
+          name: 'Claudia Costa',
           is_confirmed: null,
           is_present: null,
           is_child: false,

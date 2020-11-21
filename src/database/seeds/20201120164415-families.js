@@ -849,6 +849,15 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date(),
         },
+        {
+          id: 95,
+          code: 'recepção',
+          is_receptionist: true,
+          welcome_subject: 'Recepção',
+          number_table: 0,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
       ],
       {}
     ),
