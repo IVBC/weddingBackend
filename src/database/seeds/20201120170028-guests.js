@@ -40,7 +40,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          family_id: 2,
+          family_id: 1,
           name: 'Claudiana Nascimeno da Silva',
           is_confirmed: null,
           is_present: false,
@@ -58,7 +58,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          family_id: 2,
+          family_id: 1,
           name: 'Maria Alice de Souza Pardo',
           is_confirmed: null,
           is_present: false,
@@ -148,7 +148,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          family_id: 5,
+          family_id: 11,
           name: 'Isaias Nilson Batista da Costa',
           is_confirmed: null,
           is_present: false,
@@ -435,15 +435,15 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date(),
         },
-        {
-          family_id: 22,
-          name: 'Francisco Helio Parente Arcos Filho',
-          is_confirmed: null,
-          is_present: false,
-          is_child: false,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
+        // {
+        //   family_id: 22,
+        //   name: 'Francisco Helio Parente Arcos Filho',
+        //   is_confirmed: null,
+        //   is_present: false,
+        //   is_child: false,
+        //   created_at: new Date(),
+        //   updated_at: new Date(),
+        // },
         // {
         //   family_id: 22,
         //   name: 'Leticia Martins Vieira',
@@ -1220,7 +1220,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          family_id: 66,
+          family_id: 22,
           name: 'Raphael de Souza Nunes',
           is_confirmed: null,
           is_present: false,
