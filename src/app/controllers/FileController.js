@@ -2,6 +2,20 @@ import File from '../models/File';
 import Family from '../models/Family';
 
 class FileController {
+  async index(req, res) {
+    const files = await File.findAll({
+      include: [
+        {
+          model: Family,
+          as: 'family',
+          attributes: ['id', 'code', 'welcomeSubject', 'numberTable'],
+        },
+      ],
+    });
+
+    return res.json(files);
+  }
+
   async store(req, res) {
     const { originalname: name, filename: path } = req.file;
     const { code } = req.params;
