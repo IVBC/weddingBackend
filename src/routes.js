@@ -16,6 +16,7 @@ const upload = multer(multerConfig);
 
 routes.post('/files/:code/photo', upload.single('file'), FileController.store);
 routes.get('/photos', FileController.index);
+routes.delete('/photos/:id', FileController.delete);
 
 /**
  * Families

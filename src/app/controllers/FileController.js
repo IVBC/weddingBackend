@@ -48,6 +48,20 @@ class FileController {
 
     return res.status(400).json({ error: 'code invalid' });
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const photo = await File.findByPk(id);
+
+    if (!photo) {
+      return res.status(400).json({ error: 'photo not found' });
+    }
+
+    await photo.destroy({ where: { id } });
+
+    return res.status(200).json();
+  }
 }
 
 export default new FileController();
